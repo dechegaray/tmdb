@@ -16,8 +16,7 @@ class App extends Component {
       <div className="App">
         <Layout>
           <Switch>
-            <Route path="/rated" component={MovieList} />
-            <Route path="/genres" component={MovieList} />
+            <Route path="/genres" component={MovieView} />
             <Route path="/" exact component={MovieView} />
           </Switch>
         </Layout>

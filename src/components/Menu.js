@@ -10,10 +10,10 @@ const menu = () => {
          </a>
          <ul className="navigation">
             <li>
-               <Link to="/discover">Top Rated</Link>
+               <Link to="/">Top Rated</Link>
             </li>
             <li>
-               <Link to="/discover">Genres</Link>
+               <Link to="/genres">Genres</Link>
             </li>
          </ul>
       </header>

@@ -1,22 +1,40 @@
-import React from 'react';
-import Headline from '../components/Headline';
+import React, { Component } from 'react';
+import axios from 'axios';
+import MovieList from './MovieList';
+import Movie from './Movie';
 
-const movieView = (props) => {
+class MovieView extends Component {
+   state = {
+      movies: null,
+      currentMovie: null,
+      isCurrentVisible: false
+   }
 
-   const actors = [];
+   componentDidMount() {
+      url = 'www.tmdb.com/movies';
+      axios.post(url)
+      .then( (response) => {
+         this.setState({
+            movies: response.movies
+         });
+      }).catch(e => {
+         console.log(e);
+      });
+   }
 
-   return (
-      <div className="" style={ {backgroundImage: props.image } }>
-         <Headline title={props.title } description={ props.description } />
-         <div className="description-wrapper">
-            <h4>{ props.producer }</h4>
-            <p>{ props.text }</p>
-            <ul>
-               { actors }
-            </ul>
-         </div>
-      </div>
-   );
+   selectMovieHandler = (movieId) => {
+      this.props.history.push('/movie?id=' + movieId);
+   }
+
+   render () {
+      return (
+         <section className="movie-list-wrapper">
+            <Movie current={ this.state.currentMovie } show={ this.state.isCurrentVisible } />
+            <MovieList list={ this.state.movies } clicked={ } />
+         </section>
+      );
+      
+   }
 }
 
-export default movieView;
+export default MovieView;
